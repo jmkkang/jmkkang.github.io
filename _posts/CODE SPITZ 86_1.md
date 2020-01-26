@@ -1,5 +1,5 @@
 ---
-title: "CODE SPITZ 86 - 1"
+title: "CODE SPITZ 86_1"
 date: 2020-01-25 12:45:00 -0400
 categories: CODE SPITZ
 ---
