@@ -38,6 +38,13 @@ console.log(JSON.stringify(a) === JSON.stringify(b));  -> Value Context
 # Polymorphism(폴리모피즘) : 다형성
 >폴리모피즘이랑 객체지향에서 가장 중요한 성질이다.
 
+## Substitution & Internal identity
+> substitution : 폴리모피즘의 대체가능성   
+>> 확장(자식)클래스가 대상(부모)클래스로 대체할 수 있다.    
+
+> internal identity : 폴리모피즘의 내적일관성   
+>> 생성된 클래스의 본질은 유지된다.   
+
 <code>
 <pre>
 class Worker = class {
@@ -53,25 +60,18 @@ const HardWorker = class extends Worker{
     run(){
         console.log("HardWorker")
     }
-}
+}   
+const worker = new HardWorker();   
+console.log(worker instanceof Worker);  -> 대체가능성   
+worker.print();  -> 내적일관성   
 
-const worker = new HardWorker();
-console.log(worker instanceof Worker);  -> 대체가능성
-worker.print();  -> 내적일관성
 </pre>
 </code>
 
-위의 코드를 보면 worker객체는 HardWorder로부터 생성되었다. 
-그런데 instanceof Worker를 했을때 true가 나온다. 
+위의 코드를 보면 worker객체는 HardWorder로부터 생성되었고 instanceof Worker 를 출력했을때 결과값으로는 true가 나온다.
+worker(Hardworker)는 Worker라는 부모객체로부터 확장된 자식 클래스이므로 대체가능성이 성립된것이다. 
+worker.print()의 결과값으로는 자신의 본질을 우선으로 두는 내적일관성 때문에 "HardWorker"가 출력된다.
 
-
-
-# Substitution & Internal identity
-> substitution : 폴리모피즘의 대체가능성   
->> 확장(자식)클래스가 대상(부모)클래스로 대체할 수 있다.    
-
-> internal identity : 폴리모피즘의 내적일관성   
->> 생성된 클래스의 본질은 유지된다.   
 
 # Polymorphism of Prototype
 함수나 클래스에는 속성으로 Prototype 이라는 객체를 가지게 된다.
@@ -93,13 +93,11 @@ null 이 나올때까지 prototype chain 을 타고 올라가서 비교한다.
 
 # Object essentials
 객체지향의 언어에 조건을 만족했다고 객체지향프로그래밍이라고 할 수 없다.
-본질적인 측면으로 무엇이 있느냐,
+아래의 두 가지 본질적인 측면이 있다.
+- Maintenance of State : 상태 관리 책임   
+- Encapsulation of Functionality : 기능의 캡슐화
 
-> Maintenance of State : 상태 관리 책임   
-> Encapsulation of Functionality : 기능의 캡슐화
-
-> ##Isolation of change : 변화에 대한 격리
-
+##Isolation of change : 변화에 대한 격리
 <code><pre>
 const EssentialObject = class{
     #name = "";  -> hide state
@@ -115,7 +113,6 @@ const EssentialObject = class{
     }
 };
 </pre></code>
-
 
 
 #알려진 기본 설계요령
